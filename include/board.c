@@ -1,21 +1,16 @@
 #include <stdio.h>
-#include"board.h"
-
-
-
+#include "board.h"
 
 void init_board(struct Board *board)
 {
-    char k = '1';
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < SIZE; i++)
     {
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < SIZE; j++)
         {
-            board->board[i][j] = k++;
+            board->board[i][j] = EMPTY;
         }
     }
 }
-
 void print_board(struct Board *board)
 {
     printf("\n");
@@ -42,33 +37,16 @@ void print_board(struct Board *board)
     }
     printf("\n");
 }
-int make_move(struct Board *board, int row, int col,char character) // make move for current player
+void make_move(struct Board *board, int row, int col) // make move for current player
 {
-
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < col; j++)
-        {
-            if (board->board[i][j] == character)
-            {
-                board->board[i][j] = board->turn;
-
-                return 1;
-            }
-        }
-    }
-
-    return 0;
+    board->board[row][col] = board->turn;
 }
 void turn_change(struct Board *board)
 {
+    board->turn = (board->turn == 'X') ? 'O' : 'X';
+}
+int check_valid_move(char board[3][3], int row, int col)
+{
+   return (board[row][col] == 'X' || board[row][col] == 'O') ? 0 : 1;
 
-    if (board->turn == 'X')
-    {
-        board->turn = 'O';
-    }
-    else
-    {
-        board->turn = 'X';
-    }
 }
