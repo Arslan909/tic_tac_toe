@@ -31,4 +31,7 @@ clean:
 	rm $(OBJ)
 	rm -rf $(BIN_DIR)
 
-.PHONY: all clean run
+format:
+	clang-format -i **/*.c **/*.h
+
+.PHONY: all clean run format
