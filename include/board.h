@@ -6,7 +6,7 @@
 
 struct Board {
   char board[3][3];
-  int turn;
+  char turn;
 };
 
 void init_board(struct Board *board);
