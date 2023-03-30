@@ -5,8 +5,8 @@
 #define EMPTY ' '
 
 struct Board {
-    char board[3][3];
-    int turn;
+  char board[3][3];
+  int turn;
 };
 
 void init_board(struct Board *board);
