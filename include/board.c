@@ -1,4 +1,5 @@
 #include "board.h"
+
 #include <stdio.h>
 
 void init_board(struct Board *board) {
@@ -50,21 +51,19 @@ int check_win(struct Board *board) // 0: no winner, 1: player wins
     if (board->board[row][0] == board->turn &&
         board->board[row][1] == board->turn &&
         board->board[row][2] == board->turn) {
-      board->turn;
       return board->turn;
     }
   }
 
-
   // Check columns
   for (int col = 0; col < 3; col++) {
-
     if (board->board[0][col] == board->turn &&
         board->board[1][col] == board->turn &&
         board->board[2][col] == board->turn) {
       return board->turn;
     }
   }
+
   // Check diagonals
   if (board->board[0][0] == board->turn && board->board[1][1] == board->turn &&
       board->board[2][2] == board->turn) {

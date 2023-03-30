@@ -4,10 +4,9 @@
 #define SIZE 3
 #define EMPTY ' '
 
-struct Board
-{
-    char board[3][3];
-    char turn;
+struct Board {
+  char board[3][3];
+  char turn;
 };
 
 void init_board(struct Board *board);
