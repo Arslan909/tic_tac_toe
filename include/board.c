@@ -1,30 +1,37 @@
-#include<stdio.h>
+#include <stdio.h>
 #include "board.h"
 
-void init_board(struct Board *board) {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+void init_board(struct Board *board)
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
             board->board[i][j] = EMPTY;
         }
     }
 }
 
-
-void print_board(struct Board *board) {
+void print_board(struct Board *board)
+{
     printf("\n");
     printf("    ");
-    for (int col = 0; col < SIZE; col++) {
+    for (int col = 0; col < SIZE; col++)
+    {
         printf("%d ", col);
     }
     printf("\n");
     printf("    ");
-    for (int col = 0; col < SIZE; col++) {
+    for (int col = 0; col < SIZE; col++)
+    {
         printf("--");
     }
     printf("\n");
-    for (int row = 0; row < SIZE; row++) {
+    for (int row = 0; row < SIZE; row++)
+    {
         printf("%d | ", row);
-        for (int col = 0; col < SIZE; col++) {
+        for (int col = 0; col < SIZE; col++)
+        {
             printf("%c ", board->board[row][col]);
         }
         printf("\n");
@@ -32,50 +39,53 @@ void print_board(struct Board *board) {
     printf("\n");
 }
 
-int check_draw(struct Board *board)
+int check_draw(struct Board *board) // 0: no draw, 1: draw
 {
-    for (int row = 0; row < 3; row++) 
+    for (int row = 0; row < 3; row++)
     {
         for (int col = 0; col < 3; col++)
         {
-           if(board->board[row][col] >= '1' && board->board[row][col] <= '9'){
+            if (board->board[row][col] != 'X' && board->board[row][col] != 'O')
+            {
                 return 0;
-           }
+            }
         }
     }
     return 1;
 }
 
-int check_win(struct Board *board)
+int check_win(struct Board *board) // 0: no winner, 1: player wins
 {
     // Check rows
     for (int row = 0; row < 3; row++)
     {
-        if (board->board[row][0] == board->player && board->board[row][1] == board->player && board->board[row][2] == board->player)
+        if (board->board[row][0] == board->turn && board->board[row][1] == board->turn && board->board[row][2] == board->turn)
         {
             return 1;
         }
     }
-
 
     // Check columns
     for (int col = 0; col < 3; col++)
     {
-        if (board->board[0][col] == board->player && board->board[1][col] == board->player && board->board[2][col] == board->player)
+        if (board->board[0][col] == board->turn && board->board[1][col] == board->turn && board->board[2][col] == board->turn)
         {
             return 1;
         }
-
-
     }
     // Check diagonals
-    if (board->board[0][0] == board->player && board->board[1][1] == board->player && board->board[2][2] == board->player)
+    if (board->board[0][0] == board->turn && board->board[1][1] == board->turn && board->board[2][2] == board->turn)
     {
-        return 1; 
+        return 1;
     }
-    if (board->board[0][2] == board->player && board->board[1][1] == board->player && board->board[2][0] == board->player)
+    if (board->board[0][2] == board->turn && board->board[1][1] == board->turn && board->board[2][0] == board->turn)
     {
-        return 1; 
+        return 1;
     }
     return 0;
+}
+
+int check_board(struct Board *board) // 0: no winner, 1: X wins, 2: O wins, 3: draw
+{
+    return check_win(board) ? (board->turn == "X" ? 1 : 2) : (check_draw(board) ? 3 : 0);
 }
