@@ -54,8 +54,8 @@ int check_draw(struct Board *board) {
   return 1;
 }
 
-// 0: no winner, 1: player wins
-int check_win(struct Board *board) {
+// 'X':x wins, 'O':o wins
+char check_win(struct Board *board) {
   // Check rows
   for (int row = 0; row < 3; row++) {
     if (board->board[row][0] == board->turn &&
@@ -83,5 +83,5 @@ int check_win(struct Board *board) {
       board->board[2][0] == board->turn) {
     return board->turn;
   }
-  return 0;
+  return;
 }
