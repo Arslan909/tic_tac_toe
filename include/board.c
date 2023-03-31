@@ -42,8 +42,8 @@ int check_valid_move(char board[3][3], int row, int col) {
   return (board[row][col] == 'X' || board[row][col] == 'O') ? 0 : 1;
 }
 
-int check_draw(struct Board *board) // 0: no draw, 1: draw
-{
+// 0: no draw, 1: draw
+int check_draw(struct Board *board) {
   for (int row = 0; row < 3; row++) {
     for (int col = 0; col < 3; col++) {
       if (board->board[row][col] != 'X' && board->board[row][col] != 'O') {
@@ -54,8 +54,8 @@ int check_draw(struct Board *board) // 0: no draw, 1: draw
   return 1;
 }
 
-int check_win(struct Board *board) // 0: no winner, 1: player wins
-{
+// 0: no winner, 1: player wins
+int check_win(struct Board *board) {
   // Check rows
   for (int row = 0; row < 3; row++) {
     if (board->board[row][0] == board->turn &&
