@@ -1,4 +1,5 @@
 #include "board.h"
+
 #include <stdio.h>
 
 void init_board(struct Board *board) {
@@ -8,27 +9,29 @@ void init_board(struct Board *board) {
     }
   }
 }
+
 void print_board(struct Board *board) {
   printf("\n");
   printf("    ");
-  for (int col = 0; col < 3; col++) {
+  for (int col = 0; col < SIZE; col++) {
     printf("%d ", col);
   }
   printf("\n");
   printf("    ");
-  for (int col = 0; col < 3; col++) {
+  for (int col = 0; col < SIZE; col++) {
     printf("--");
   }
   printf("\n");
-  for (int row = 0; row < 3; row++) {
+  for (int row = 0; row < SIZE; row++) {
     printf("%d | ", row);
-    for (int col = 0; col < 3; col++) {
+    for (int col = 0; col < SIZE; col++) {
       printf("%c ", board->board[row][col]);
     }
     printf("\n");
   }
   printf("\n");
 }
+
 void make_move(struct Board *board, int row, int col) {
   board->board[row][col] = board->turn;
 }
