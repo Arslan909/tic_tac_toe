@@ -1,5 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror -pedantic -std=c99 -g
+LDLIBS=-lncurses
 
 SRC_DIR=src
 INC_DIR=include
@@ -15,7 +16,7 @@ all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(SRC)
 	@mkdir -p $(BIN_DIR)
-	$(CC) $(CFLAGS) $(SRC) -o $(BIN_DIR)/$(EXECUTABLE)
+	$(CC) $(CFLAGS) $(SRC) -o $(BIN_DIR)/$(EXECUTABLE) $(LDLIBS)
 
 run: $(EXECUTABLE)
 	$(BIN_DIR)/$(EXECUTABLE)
